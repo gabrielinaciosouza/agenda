@@ -19,8 +19,23 @@
             android:layout_margin="8dp"
             android:hint="@string/nome"
             android:inputType="textCapWords"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/activity_formulario_aluno_sobrenome"
+            android:importantForAutofill="no" />
+
+        <EditText
+            android:id="@+id/activity_formulario_aluno_sobrenome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="@string/sobrenome"
+            android:inputType="textCapWords"
+            app:layout_constraintTop_toBottomOf="@id/activity_formulario_aluno_nome"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/activity_formulario_aluno_telefone"
             android:importantForAutofill="no" />
 
         <EditText
@@ -33,8 +48,10 @@
             android:layout_marginTop="24dp"
             android:hint="@string/telefone"
             android:inputType="phone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_formulario_aluno_nome"
+            app:layout_constraintTop_toBottomOf="@id/activity_formulario_aluno_sobrenome"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/activity_formulario_aluno_email"
             android:importantForAutofill="no" />
 
         <EditText
@@ -47,8 +64,9 @@
             android:layout_marginTop="46dp"
             android:hint="@string/e_mail"
             android:inputType="textEmailAddress"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_formulario_aluno_telefone"
+            app:layout_constraintTop_toBottomOf="@id/activity_formulario_aluno_telefone"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
             android:importantForAutofill="no" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

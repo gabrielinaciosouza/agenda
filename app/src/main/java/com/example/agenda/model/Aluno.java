@@ -15,13 +15,15 @@ public class Aluno implements Serializable {
     private String nome;
     private String telefone;
     private String email;
+    private String sobrenome;
 
 
     @Ignore
-    public Aluno(String nome, String telefone, String email) {
+    public Aluno(String nome, String telefone, String email, String sobrenome) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
+        this.sobrenome = sobrenome;
     }
 
     public Aluno() {
@@ -68,5 +70,17 @@ public class Aluno implements Serializable {
 
     public boolean temIdValiddo() {
         return id > 0;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public String getNomeCompleto() {
+        return nome + " " + sobrenome;
     }
 }

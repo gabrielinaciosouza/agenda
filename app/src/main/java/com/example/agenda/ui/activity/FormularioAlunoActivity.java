@@ -1,6 +1,7 @@
 package com.example.agenda.ui.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import com.example.agenda.R;
 import com.example.agenda.dao.AlunoDAO;
+import com.example.agenda.database.AgendaDatabase;
+import com.example.agenda.database.dao.RoomAlunoDAO;
 import com.example.agenda.model.Aluno;
 
 
@@ -20,16 +23,18 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     private static final String TITULO_APPBAR_NOVO_ALUNO = "Novo Contato";
     private static final String TITULO_APPBAR_EDITA_ALUNO = "Edita Aluno";
     private EditText campoNome;
+    private EditText campoSobrenome;
     private EditText campoTelefone;
     private EditText campoEmail;
-    final AlunoDAO dao = new AlunoDAO();
+    private RoomAlunoDAO dao;
     private Aluno aluno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_aluno);
-
+        AgendaDatabase database = AgendaDatabase.getInstance(this);
+        this.dao = database.getRoomAlunoDAO();
         inicializacaoDosCampos();
         carregaAluno();
     }
@@ -54,6 +59,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
     private void preencheCampos() {
         campoNome.setText(aluno.getNome());
+        campoSobrenome.setText(aluno.getSobrenome());
         campoTelefone.setText(aluno.getTelefone());
         campoEmail.setText(aluno.getEmail());
     }
@@ -81,15 +87,18 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         campoNome = findViewById(R.id.activity_formulario_aluno_nome);
         campoTelefone = findViewById(R.id.activity_formulario_aluno_telefone);
         campoEmail = findViewById(R.id.activity_formulario_aluno_email);
+        campoSobrenome = findViewById(R.id.activity_formulario_aluno_sobrenome);
     }
 
 
     private void preencheAluno() {
         String nome = campoNome.getText().toString();
+        String sobrenome = campoSobrenome.getText().toString();
         String telefone = campoTelefone.getText().toString();
         String email = campoEmail.getText().toString();
 
         aluno.setNome(nome);
+        aluno.setSobrenome(sobrenome);
         aluno.setEmail(email);
         aluno.setTelefone(telefone);
     }
